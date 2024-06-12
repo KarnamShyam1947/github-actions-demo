@@ -12,7 +12,8 @@ public class DemoContoller {
     @GetMapping("/")
     public Object sample() {
         return Map.of("name", "karnam shyam",
-                      "email", "karnamshyam9009@gmail.com");
+                      "email", "karnamshyam9009@gmail.com",
+                      "running", "on ec2 self hosted");
     }
 
     @GetMapping("/welcome/{name}")
