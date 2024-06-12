@@ -29,4 +29,19 @@ jobs:
 
       - name: Publish image to docker hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/springboot-example:latest
+
+  deploy:
+    needs: build
+
+    runs-on: [github-actions-self-hosted]
+
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/springboot-example:latest
+
+      - name: Delete old container
+        run: docker rm -f springboot-example-container
+
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 --name springboot-example-container ${{ secrets.DOCKER_USERNAME }}/springboot-example
         
