@@ -30,9 +30,9 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/springboot-example:latest
+        run: sudo docker pull ${{ secrets.DOCKER_USERNAME }}/springboot-example:latest
       - name: Delete old container
-        run: docker rm -f springboot-example-container
+        run: sudo docker rm -f springboot-example-container
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name springboot-example-container ${{ secrets.DOCKER_USERNAME }}/springboot-example
+        run: sudo docker run -d -p 8080:8080 --name springboot-example-container ${{ secrets.DOCKER_USERNAME }}/springboot-example
         
